@@ -22,4 +22,4 @@ import { PassengerModule } from './passenger/passenger.module';
         ]),
     ],
 })
-export class AppModule {}
+export class RestModule {}
