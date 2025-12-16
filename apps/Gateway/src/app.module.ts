@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { configurations } from './config/configurations';
 import { RestModule } from './rest/rest.module';
+import { ServiceModule } from "./services/service.module";
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { RestModule } from './rest/rest.module';
           envFilePath: ['.env'],
       }),
       RestModule,
+      ServiceModule,
   ],
   controllers: [],
   providers: [],

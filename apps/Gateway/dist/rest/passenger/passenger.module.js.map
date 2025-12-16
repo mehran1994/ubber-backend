@@ -1,0 +1,1 @@
+{"version":3,"file":"passenger.module.js","sourceRoot":"","sources":["../../../src/rest/passenger/passenger.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,4DAAiE;AACjE,sDAA2D;AAMpD,IAAM,eAAe,GAArB,MAAM,eAAe;CAAG,CAAA;AAAlB,0CAAe;0BAAf,eAAe;IAJ3B,IAAA,eAAM,EAAC;QACN,WAAW,EAAE,CAAC,yCAAuB,CAAC;QACtC,SAAS,EAAE,CAAC,mCAAoB,CAAC;KAClC,CAAC;GACW,eAAe,CAAG"}
