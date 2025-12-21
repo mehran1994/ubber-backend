@@ -17,10 +17,10 @@ let DriverAuthService = class DriverAuthService {
     constructor(mainSrvCli) {
         this.mainSrvCli = mainSrvCli;
     }
-    async signup(body) {
+    async requestOtp(body) {
         const data = await this.mainSrvCli.callAction({
             provider: 'DRIVERS',
-            action: 'signIn',
+            action: 'requestOtp',
             query: body
         });
         return data;

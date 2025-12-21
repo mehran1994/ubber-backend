@@ -1,7 +1,7 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {IsPhoneNumber} from "class-validator";
 
-export class DriverSignupDto {
+export class DriverRequestInputDto {
     @ApiProperty({
         type: String,
         required: true,

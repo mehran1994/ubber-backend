@@ -22,19 +22,19 @@ let DriverAuthController = class DriverAuthController {
     constructor(driverService) {
         this.driverService = driverService;
     }
-    async signup(body) {
-        return await this.driverService.signup(body);
+    async requestOtp(body) {
+        return await this.driverService.requestOtp(body);
     }
 };
 exports.DriverAuthController = DriverAuthController;
 __decorate([
-    (0, common_1.Post)('signup'),
-    (0, swagger_1.ApiOperation)({ summary: 'Create Driver Auth' }),
+    (0, common_1.Post)('request-otp'),
+    (0, swagger_1.ApiOperation)({ summary: 'Request otp in app by phone number' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [driver_dto_1.DriverSignupDto]),
+    __metadata("design:paramtypes", [driver_dto_1.DriverRequestInputDto]),
     __metadata("design:returntype", Promise)
-], DriverAuthController.prototype, "signup", null);
+], DriverAuthController.prototype, "requestOtp", null);
 exports.DriverAuthController = DriverAuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.DriverAuthService])

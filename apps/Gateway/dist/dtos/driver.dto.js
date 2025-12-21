@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DriverSignupDto = void 0;
+exports.DriverRequestInputDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class DriverSignupDto {
+class DriverRequestInputDto {
     phone;
 }
-exports.DriverSignupDto = DriverSignupDto;
+exports.DriverRequestInputDto = DriverRequestInputDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
         type: String,
@@ -25,5 +25,5 @@ __decorate([
     }),
     (0, class_validator_1.IsPhoneNumber)('NL', { message: 'Enter a valid phone number' }),
     __metadata("design:type", String)
-], DriverSignupDto.prototype, "phone", void 0);
+], DriverRequestInputDto.prototype, "phone", void 0);
 //# sourceMappingURL=driver.dto.js.map

@@ -1,3 +1,3 @@
-export declare class DriverSignupDto {
+export declare class DriverRequestInputDto {
     phone: string;
 }
