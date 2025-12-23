@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DriverAuthService = void 0;
 const common_1 = require("@nestjs/common");
 const main_service_1 = require("../../../services/main.service");
+const httpException_filter_1 = require("../../../response/httpException.filter");
 let DriverAuthService = class DriverAuthService {
     mainSrvCli;
     constructor(mainSrvCli) {
@@ -23,7 +24,7 @@ let DriverAuthService = class DriverAuthService {
             action: 'requestOtp',
             query: body
         });
-        return data;
+        return (0, httpException_filter_1.handleSrvCliResponse)(data);
     }
 };
 exports.DriverAuthService = DriverAuthService;

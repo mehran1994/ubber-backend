@@ -1,9 +1,14 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Post, UseFilters, UseInterceptors} from '@nestjs/common';
 import {DriverAuthService} from "./auth.service";
-import {ApiOperation} from "@nestjs/swagger";
+import {ApiOperation, ApiTags} from "@nestjs/swagger";
 import { DriverRequestInputDto } from "src/dtos/driver.dto";
+import {HttpExceptionFilter} from "src/response/httpException.filter";
+import {ResponseInterceptor} from "src/response/repons.interceptors";
 
+@ApiTags('Auth')
 @Controller('auth')
+@UseFilters(HttpExceptionFilter)
+@UseInterceptors(ResponseInterceptor)
 export class DriverAuthController {
     constructor(private readonly driverService: DriverAuthService) {}
 
