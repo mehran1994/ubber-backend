@@ -40,6 +40,25 @@ let DriversService = class DriversService {
             },
         };
     }
+    async verifyOtp({ query }) {
+        const { phone, otp } = query;
+        const key = `otp:${DriversService_1.role}:${phone}`;
+        const savedOtp = await this.redis.cacheCli.get(key);
+        if (!savedOtp) {
+            throw new Error(`Otp not found or expired`);
+        }
+        if (savedOtp !== otp) {
+            throw new Error('invalid otp');
+        }
+        await this.redis.cacheCli.del(key);
+        return {
+            message: 'OTP verified successfully!',
+            data: {
+                success: true,
+                phone,
+            },
+        };
+    }
 };
 exports.DriversService = DriversService;
 exports.DriversService = DriversService = DriversService_1 = __decorate([

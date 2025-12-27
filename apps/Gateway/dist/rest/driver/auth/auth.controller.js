@@ -27,6 +27,9 @@ let DriverAuthController = class DriverAuthController {
     async requestOtp(body) {
         return await this.driverService.requestOtp(body);
     }
+    async verifyOtp(body) {
+        return await this.driverService.verifyOtp(body);
+    }
 };
 exports.DriverAuthController = DriverAuthController;
 __decorate([
@@ -37,6 +40,14 @@ __decorate([
     __metadata("design:paramtypes", [driver_dto_1.DriverRequestInputDto]),
     __metadata("design:returntype", Promise)
 ], DriverAuthController.prototype, "requestOtp", null);
+__decorate([
+    (0, common_1.Post)('verify-otp'),
+    (0, swagger_1.ApiOperation)({ summary: 'Verify otp sent to driver phone number' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [driver_dto_1.DriverVerifyOtpInputDto]),
+    __metadata("design:returntype", Promise)
+], DriverAuthController.prototype, "verifyOtp", null);
 exports.DriverAuthController = DriverAuthController = __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('auth'),

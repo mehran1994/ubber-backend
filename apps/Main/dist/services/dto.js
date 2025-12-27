@@ -32,10 +32,10 @@ class ServiceResponseData {
     data;
 }
 exports.ServiceResponseData = ServiceResponseData;
-class SrvError extends Error {
+class SrvError extends common_1.HttpException {
     code;
-    constructor(status = common_1.HttpStatus.INTERNAL_SERVER_ERROR, error, options) {
-        super(error, options);
+    constructor(status = common_1.HttpStatus.INTERNAL_SERVER_ERROR, error) {
+        super(error, status);
         this.code = status;
     }
 }

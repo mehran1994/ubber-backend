@@ -22,7 +22,15 @@ let DriverAuthService = class DriverAuthService {
         const data = await this.mainSrvCli.callAction({
             provider: 'DRIVERS',
             action: 'requestOtp',
-            query: body
+            query: body,
+        });
+        return (0, httpException_filter_1.handleSrvCliResponse)(data);
+    }
+    async verifyOtp(body) {
+        const data = await this.mainSrvCli.callAction({
+            provider: 'DRIVERS',
+            action: 'verifyOtp',
+            query: body,
         });
         return (0, httpException_filter_1.handleSrvCliResponse)(data);
     }

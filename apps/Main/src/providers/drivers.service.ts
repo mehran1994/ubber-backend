@@ -6,6 +6,7 @@ import {ServiceClientContextDto, ServiceResponseData, SrvError} from "../service
 export class DriversService {
     private static readonly role = "driver";
     constructor(private readonly redis: RedisService) {}
+
     async requestOtp({ query }: ServiceClientContextDto): Promise<ServiceResponseData> {
         const { phone } = query;
         const key = `otp:${DriversService.role}:${phone}`;
@@ -25,5 +26,28 @@ export class DriversService {
                 expiresIn: ttl,
             },
         };
+    }
+
+    async verifyOtp({ query }: ServiceClientContextDto): Promise<ServiceResponseData> {
+        const { phone, otp } = query;
+        const key = `otp:${DriversService.role}:${phone}`;
+
+        const savedOtp = await this.redis.cacheCli.get(key);
+        if(!savedOtp) {
+            throw new Error(`Otp not found or expired`);
+        }
+
+        if(savedOtp !== otp) {
+            throw new Error('invalid otp');
+        }
+
+        await this.redis.cacheCli.del(key);
+        return {
+            message: 'OTP verified successfully!',
+            data: {
+                success: true,
+                phone,
+            },
+        }
     }
 }

@@ -12,7 +12,17 @@ export class DriverAuthService {
         const data = await this.mainSrvCli.callAction({
             provider: 'DRIVERS',
             action: 'requestOtp',
-            query: body
+            query: body,
+        });
+
+        return handleSrvCliResponse(data);
+    }
+
+    async verifyOtp(body: DriverRequestInputDto) {
+        const data = await this.mainSrvCli.callAction({
+            provider: 'DRIVERS',
+            action: 'verifyOtp',
+            query: body,
         });
 
         return handleSrvCliResponse(data);

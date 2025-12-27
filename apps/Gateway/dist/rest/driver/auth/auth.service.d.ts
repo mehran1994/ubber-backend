@@ -4,4 +4,5 @@ export declare class DriverAuthService {
     private readonly mainSrvCli;
     constructor(mainSrvCli: MainServiceClient);
     requestOtp(body: DriverRequestInputDto): Promise<any>;
+    verifyOtp(body: DriverRequestInputDto): Promise<any>;
 }

@@ -5,4 +5,5 @@ export declare class DriversService {
     private static readonly role;
     constructor(redis: RedisService);
     requestOtp({ query }: ServiceClientContextDto): Promise<ServiceResponseData>;
+    verifyOtp({ query }: ServiceClientContextDto): Promise<ServiceResponseData>;
 }

@@ -1,4 +1,4 @@
-import { HttpStatus } from "@nestjs/common";
+import { HttpException, HttpStatus } from "@nestjs/common";
 export declare class ServiceClientContextDto {
     query?: object | any;
     set?: object | any;
@@ -24,7 +24,7 @@ export declare class ServiceResponseData {
     message?: string;
     data?: any;
 }
-export declare class SrvError extends Error {
+export declare class SrvError extends HttpException {
     readonly code: HttpStatus;
-    constructor(status: HttpStatus | undefined, error: string, options?: ErrorOptions);
+    constructor(status: HttpStatus | undefined, error: string);
 }
