@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:type", String)
 ], DriverVerifyOtpInputDto.prototype, "phone", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '+3161999999' }),
+    (0, swagger_1.ApiProperty)({ example: '1234' }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.Length)(4, 6),
