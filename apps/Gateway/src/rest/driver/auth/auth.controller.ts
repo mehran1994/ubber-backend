@@ -1,4 +1,4 @@
-import {Body, Controller, Post, UseFilters, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Post, Res, UseFilters, UseInterceptors} from '@nestjs/common';
 import {DriverAuthService} from "./auth.service";
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
 import {DriverRequestInputDto, DriverVerifyOtpInputDto} from "src/dtos/driver.dto";
@@ -20,7 +20,19 @@ export class DriverAuthController {
 
     @Post('verify-otp')
     @ApiOperation({ summary: 'Verify otp sent to driver phone number' })
-    async verifyOtp(@Body() body: DriverVerifyOtpInputDto) {
-        return await this.driverService.verifyOtp(body);
+    async verifyOtp(@Body() body: DriverVerifyOtpInputDto, @Res({ passthrough: true }) res) {
+        const verifyOtpData = await this.driverService.verifyOtp(body);
+        const tokenData = verifyOtpData.accessToken;
+        res.cookie(tokenData.name, tokenData.data, {
+            maxAge: tokenData.ttl,
+            httpOnly: true,
+            secure: true,
+            samePath: 'strict',
+            path: '/'
+        });
+
+        delete verifyOtpData.accessToken;
+
+        return verifyOtpData;
     }
 }

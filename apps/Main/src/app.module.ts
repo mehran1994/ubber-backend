@@ -3,6 +3,7 @@ import {ServiceModule} from "./services/service.module";
 import {ConfigModule} from "@nestjs/config";
 import {configurations} from "./config/configurations";
 import {DatabaseModule} from "./databases/database.module";
+import {UtilsModule} from "./_utils/utils.module";
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import {DatabaseModule} from "./databases/database.module";
           isGlobal: true,
           envFilePath: ['.env'],
       }),
+      UtilsModule,
       ServiceModule,
       DatabaseModule,
   ],

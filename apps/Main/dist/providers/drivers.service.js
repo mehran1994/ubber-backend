@@ -14,11 +14,14 @@ exports.DriversService = void 0;
 const common_1 = require("@nestjs/common");
 const redis_service_1 = require("../databases/redis/redis.service");
 const dto_1 = require("../services/dto");
+const postgres_service_1 = require("../databases/postgres/postgres.service");
 let DriversService = class DriversService {
     static { DriversService_1 = this; }
+    pg;
     redis;
     static role = "driver";
-    constructor(redis) {
+    constructor(pg, redis) {
+        this.pg = pg;
         this.redis = redis;
     }
     async requestOtp({ query }) {
@@ -51,6 +54,14 @@ let DriversService = class DriversService {
             throw new Error('invalid otp');
         }
         await this.redis.cacheCli.del(key);
+        let driver = await this.pg.models.Driver.findOne({ where: { phone } });
+        if (!driver) {
+            driver = await this.pg.models.Driver.create({ phone });
+        }
+        const newSession = await this.pg.models.DriverSession.create({
+            driverId: driver.id,
+            refreshExpiresAt: +new Date(),
+        });
         return {
             message: 'OTP verified successfully!',
             data: {
@@ -63,6 +74,7 @@ let DriversService = class DriversService {
 exports.DriversService = DriversService;
 exports.DriversService = DriversService = DriversService_1 = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [redis_service_1.RedisService])
+    __metadata("design:paramtypes", [postgres_service_1.PostgresService,
+        redis_service_1.RedisService])
 ], DriversService);
 //# sourceMappingURL=drivers.service.js.map
