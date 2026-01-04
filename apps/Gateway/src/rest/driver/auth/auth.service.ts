@@ -27,4 +27,16 @@ export class DriverAuthService {
 
         return handleSrvCliResponse(data);
     }
+
+    async autherize(token: string) {
+        const data = await this.mainSrvCli.callAction({
+            provider: 'DRIVERS',
+            action: 'autherize',
+            query: {
+                token,
+            },
+        });
+
+        return handleSrvCliResponse(data);
+    }
 }
