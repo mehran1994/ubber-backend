@@ -62,7 +62,11 @@ export class TokenService {
     }
 
     decode(token: string): any {
-
+        try {
+            return this.jwt.decode(token);
+        } catch {
+            return null;
+        }
     }
 
     checkExpiry(token: string) {}

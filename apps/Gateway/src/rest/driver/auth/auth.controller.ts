@@ -1,9 +1,10 @@
-import {Body, Controller, Post, Res, UseFilters, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Post, Res, UseFilters, UseInterceptors, Request, Get, UseGuards} from '@nestjs/common';
 import {DriverAuthService} from "./auth.service";
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
 import {DriverRequestInputDto, DriverVerifyOtpInputDto} from "src/dtos/driver.dto";
 import {HttpExceptionFilter} from "src/response/httpException.filter";
 import {ResponseInterceptor} from "src/response/repons.interceptors";
+import {DriverAuthGuard} from "./auth.guard";
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -34,5 +35,12 @@ export class DriverAuthController {
         delete verifyOtpData.accessToken;
 
         return verifyOtpData;
+    }
+
+    @UseGuards(DriverAuthGuard)
+    @Get('profile')
+    @ApiOperation({ summary: 'Get driver profile' })
+    async getProfile(@Request() req) {
+        return req.user;
     }
 }
